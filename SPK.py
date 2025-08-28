@@ -1,15 +1,15 @@
 import streamlit as st
 
-st.set_page_config(page_title="Aplikasi Multi-Fitur", page_icon="🔥", layout="centered")
+st.set_page_config(page_title="Aplikasi Multi-Fitur", layout="centered")
 
-st.title("✨ Aplikasi Perhitungan")
+st.title("Aplikasi Perhitungan")
 
 # Pilihan menu
 menu = st.sidebar.radio("Pilih Fitur:", ["Kalkulator", "Konversi Suhu", "Deret Fibonacci"])
 
-# ================== 1. KALKULATOR ==================
+# Kalkulator
 if menu == "Kalkulator":
-    st.header("🧮 Kalkulator Sederhana")
+    st.header("Kalkulator Sederhana")
     a = st.number_input("Masukkan angka pertama", value=0.0)
     b = st.number_input("Masukkan angka kedua", value=0.0)
     operator = st.selectbox("Pilih operator", ["+", "-", "×", "÷"])
@@ -23,11 +23,11 @@ if menu == "Kalkulator":
             hasil = a * b
         elif operator == "÷":
             hasil = a / b if b != 0 else "Tak terdefinisi (bagi 0)"
-        st.success(f"Hasil: {hasil}")
+        st.info(f"Hasil: {hasil}")
 
-# ================== 2. KONVERSI SUHU ==================
+# Konversi Suhu
 elif menu == "Konversi Suhu":
-    st.header("🌡️ Konversi Suhu")
+    st.header("Konversi Suhu")
     nilai = st.number_input("Masukkan nilai suhu", value=0.0)
     asal = st.selectbox("Dari satuan:", ["Celcius", "Reamur", "Fahrenheit"])
     tujuan = st.selectbox("Ke satuan:", ["Celcius", "Reamur", "Fahrenheit"])
@@ -52,11 +52,11 @@ elif menu == "Konversi Suhu":
             elif tujuan == "Reamur":
                 hasil = (4/9) * (nilai - 32)
 
-        st.success(f"Hasil: {hasil:.2f} {tujuan}")
+        st.info(f"Hasil: {hasil:.2f} {tujuan}")
 
-# ================== 3. FIBONACCI ==================
+#Deret Fibonacci
 elif menu == "Deret Fibonacci":
-    st.header("🔢 Deret Fibonacci")
+    st.header("Deret Fibonacci")
     n = st.number_input("Masukkan jumlah bilangan (n)", min_value=1, step=1)
 
     if st.button("Generate"):
@@ -64,5 +64,5 @@ elif menu == "Deret Fibonacci":
         while len(fib) < n:
             fib.append(fib[-1] + fib[-2])
         fib = fib[:n]
-        st.success(f"Deret Fibonacci ({n} bilangan):")
+        st.info(f"Deret Fibonacci ({n} bilangan):")
         st.write(fib)
